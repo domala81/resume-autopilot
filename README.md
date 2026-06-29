@@ -1,4 +1,4 @@
-# Resume AI — Claude Code Resume Tailoring Agent
+# Resume Autopilot — Claude Code Resume Tailoring Agent
 
 > An automated, ATS-optimized resume tailoring system built on **Claude Code**. Paste a job
 > description, get a tailored, quality-gated, one-page PDF — without hand-editing LaTeX.
@@ -143,12 +143,12 @@ See [`SKILLS.md`](SKILLS.md) for the full when-to-use-what guide, and
 From inside Claude Code, add this repo as a plugin marketplace and install the toolkit:
 
 ```text
-/plugin marketplace add your-username/resume-ai-template
-/plugin install resume-ai-toolkit@resume-ai-marketplace
+/plugin marketplace add your-username/resume-autopilot
+/plugin install resume-autopilot@resume-autopilot-marketplace
 ```
 
-(Replace `your-username/resume-ai-template` with the GitHub repo path once you've pushed it. You can
-also point at a local clone: `/plugin marketplace add ./resume-ai-template`.)
+(Replace `your-username/resume-autopilot` with the GitHub repo path once you've pushed it. You can
+also point at a local clone: `/plugin marketplace add ./resume-autopilot`.)
 
 The five skills are then available in any Claude Code session.
 
@@ -163,8 +163,8 @@ cp -r skills/* ~/.claude/skills/
 ### Then clone the pipeline
 
 ```bash
-git clone https://github.com/your-username/resume-ai-template.git
-cd resume-ai-template
+git clone https://github.com/your-username/resume-autopilot.git
+cd resume-autopilot
 ```
 
 Open the folder in Claude Code and paste a job description to start tailoring.
@@ -193,7 +193,7 @@ bash   scripts/compile.sh        jobs/<company>/resume.tex YourName_Resume_<Comp
 ## Repo structure
 
 ```text
-resume-ai-template/
+resume-autopilot/
 ├── .claude-plugin/          # makes the repo an installable Claude Code plugin + marketplace
 │   ├── plugin.json
 │   └── marketplace.json

@@ -1,4 +1,4 @@
-# Resume AI Agent Instructions
+# Resume Autopilot — Agent Instructions
 
 ## Purpose
 
