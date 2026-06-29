@@ -131,8 +131,7 @@ used inside the per-application workflow.
 | `resume-hiring-manager` | 30-min mock interview with scoring + hireability score + study plan | Night before a real interview |
 | `resume-bullet-refiner` | Surgical single-bullet rewrites; asks for metrics instead of fabricating | Anytime a bullet feels weak |
 
-See [`SKILLS.md`](SKILLS.md) for the full when-to-use-what guide, and
-[`LINKEDIN_PLAYBOOK.md`](LINKEDIN_PLAYBOOK.md) for a bonus LinkedIn headline/About optimization guide.
+See [`SKILLS.md`](SKILLS.md) for the full when-to-use-what guide.
 
 ---
 
@@ -200,7 +199,6 @@ resume-autopilot/
 ├── CLAUDE.md                # the agent's operating instructions — the per-application workflow
 ├── README.md                # you are here
 ├── SKILLS.md                # when-to-use-which-skill reference
-├── LINKEDIN_PLAYBOOK.md     # bonus: LinkedIn headline + About optimization guide
 ├── skills/                  # the 5 resume skills (auto-loaded by the plugin)
 │   └── resume-*/SKILL.md
 ├── scripts/
