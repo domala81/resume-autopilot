@@ -1,0 +1,10 @@
+{
+  "name": "resume-ai-toolkit",
+  "description": "Five resume skills (diagnoser, recruiter, rewriter, hiring-manager, bullet-refiner) for ATS-optimized resume tailoring with Claude Code.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Your Name"
+  },
+  "homepage": "https://github.com/your-username/resume-ai-template",
+  "keywords": ["resume", "ats", "job-search", "career", "skills"]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "resume-ai-marketplace",
+  "owner": {
+    "name": "Your Name"
+  },
+  "plugins": [
+    {
+      "name": "resume-ai-toolkit",
+      "source": "./",
+      "description": "Five resume skills for ATS-optimized, job-tailored resumes: diagnoser, recruiter, rewriter, hiring-manager, and bullet-refiner.",
+      "version": "0.1.0"
+    }
+  ]
+}

@@ -1,0 +1,190 @@
+%-------------------------
+% Jake's Resume Template
+%-------------------------
+% NOTE: This is a FICTIONAL sample persona ("Alex Morgan") used to demonstrate the
+% pipeline end-to-end. Replace the content between \begin{document} and \end{document}
+% with your own details. Do NOT change the preamble, packages, spacing, or commands.
+
+\documentclass[letterpaper,11pt]{article}
+% Force 10.5pt font size for tighter layout
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\titleformat{\section}{
+  \vspace{-6pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-7pt}]
+
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-3pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-9pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-7pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\AtBeginDocument{\fontsize{10.5}{13}\selectfont}
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Alex Morgan} \\ \vspace{1pt}
+    \small Austin, Texas $|$
+    \href{mailto:alex.morgan.dev@example.com}{\underline{alex.morgan.dev@example.com}} $|$
+    (555) 010-1234 $|$
+    \href{https://linkedin.com/in/alex-morgan-data}{\underline{linkedin.com/in/alex-morgan-data}} $|$
+    \href{https://github.com/alexmorgan-dev}{\underline{github.com/alexmorgan-dev}}
+\end{center}
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Northwind Analytics}{Austin, USA}
+      {Data Engineer}{Jan 2024 -- Present}
+      \resumeItemListStart
+        \resumeItem{Built PySpark/AWS Glue pipeline ingesting 3.5B+ daily records into Delta Lake, powering analytics, ML features, and reporting for 12 downstream teams -- structured on Medallion Architecture}
+        \resumeItem{Developed internal Lambda API tooling that automated pipeline configuration, testing, and deployment workflows, reducing engineering effort by $\sim$70\%}
+        \resumeItem{Engineered serverless ingestion monitoring via Lambda, DynamoDB, and Step Functions (8-state workflow), automating delta file event triggering and improving pipeline observability}
+        \resumeItem{Automated end-to-end test data provisioning by chaining 10+ Python and shell script steps across internal APIs and DynamoDB, cutting setup time $\sim$75\% and eliminating manual intervention}
+        \resumeItem{Diagnosed and resolved 15+ high-severity data pipeline incidents via root cause analysis, eliminating recurring SLA breaches across 12 downstream data consumers}
+        \resumeItem{Delivered 10+ Delta Lake table integrations within strict delivery SLAs by aligning requirements with cross-functional downstream teams and securing stakeholder sign-off, authoring SQL transformation configs and schema validation logic in Databricks}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {BlueOrbit Labs}{Remote, USA}
+      {Data Engineering Intern}{May 2023 -- Aug 2023}
+      \resumeItemListStart
+        \resumeItem{Designed an Airflow + dbt ETL pipeline loading 50M+ daily events from Kafka into Snowflake, cutting data-availability latency from 6 hours to under 30 minutes for 5 analytics teams}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Acme AI}{Remote, USA}
+      {Machine Learning Engineer Intern}{May 2022 -- Aug 2022}
+      \resumeItemListStart
+        \resumeItem{Led team of 3 to build NLP preprocessing pipelines (TF-IDF vectorization, GloVe tokenization, BERT tokenization) for 40,000+ imbalanced support tickets across 5 intent classes}
+        \resumeItem{Benchmarked Naive Bayes (TF-IDF), LSTM (GloVe 300-dim), and BERT (110M params) on 5-class intent classification, achieving 95.4\% validation accuracy using TensorFlow and scikit-learn}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+%-----------SKILLS-----------
+\section{Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Programming \& Tools}{: Python, SQL, Linux/Unix, Git, Jenkins, Docker, Terraform, GitHub Actions} \\
+     \textbf{Databases}{: MySQL, Snowflake, MongoDB, PostgreSQL, Neo4j, BigQuery} \\
+     \textbf{Big Data \& Visualization}{: PySpark, Spark, Delta Lake, dbt, Databricks, Airflow, Kafka, Hadoop, QuickSight} \\
+     \textbf{ML \& AI}{: PyTorch, scikit-learn, HuggingFace Transformers, MLflow, BERT, LSTM, CNNs} \\
+     \textbf{AWS Services}{: Lambda, Glue, S3, DynamoDB, Redshift, Kinesis, IAM, EMR, Step Functions, Athena, EC2}
+    }}
+ \end{itemize}
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{MarketPulse: Real-Time Streaming Analytics Platform}}{Jan 2024 -- Mar 2024}
+          \resumeItemListStart
+            \resumeItem{Built a Kafka + Spark Structured Streaming platform on AWS (MSK, EMR, S3, Redshift) processing 200K+ events/sec, surfacing sub-second operational dashboards in QuickSight with automated data quality checks on every micro-batch}
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+%-----------PUBLICATIONS-----------
+\section{Publications}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{Adaptive Pooling Functions for Convolutional Neural Networks} $|$ \emph{IEEE Example Conference 2022 -- Best Paper Award}}{}
+          \resumeItemListStart
+            \resumeItem{Implemented a novel adaptive pooling aggregation in CNN layers using PyTorch; outperformed classical pooling on state-of-the-art architectures across benchmark image datasets}
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+%-----------ACCOMPLISHMENTS-----------
+\section{Awards \& Honors}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Riverside State Datathon 2023}{: Secured 1st place, winning \$500 for predictive demand modeling of retail sales} \\
+     \textbf{Graduate Merit Fellowship}{: Awarded \$15,000 tuition fellowship in recognition of academic excellence}
+    }}
+ \end{itemize}
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Riverside State University}{Austin, TX, US}
+      {Master of Science in Data Science $|$ GPA: 3.9/4.0}{Aug 2022 -- May 2024}
+    \resumeSubheading
+      {Westbridge Institute of Technology}{Remote, US}
+      {Bachelor of Technology in Computer Engineering}{Jul 2018 -- May 2022}
+  \resumeSubHeadingListEnd
+
+%-------------------------------------------
+\end{document}

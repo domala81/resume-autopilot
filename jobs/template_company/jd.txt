@@ -1,0 +1,6 @@
+Paste the full job description here as plain text, then run:
+
+  python scripts/keyword_match.py jobs/<company_name>/jd.txt master-1page/resume.tex
+
+This file is the starting template. Copy the whole template_company/ folder to
+jobs/<company_name>/ for each new application.

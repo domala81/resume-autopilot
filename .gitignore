@@ -1,0 +1,14 @@
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# macOS
+.DS_Store
+
+# Per-job scratch PDF (the named output PDF, e.g. AlexMorgan_Resume_*.pdf, is kept
+# for the demo; only the generic intermediate resume.pdf is ignored)
+jobs/*/resume.pdf

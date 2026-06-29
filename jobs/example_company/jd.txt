@@ -1,0 +1,35 @@
+Cloudpeak — Data Engineer (Data Platform)
+
+About the role
+Cloudpeak is building a real-time data platform that powers analytics, ML, and customer-facing
+products. We are looking for a Data Engineer to design, build, and operate streaming and batch
+pipelines that move data reliably at scale. You will own data products end to end and partner
+closely with analytics, ML, and product teams.
+
+What you'll do
+- Design and build real-time streaming pipelines using Kafka and Spark Structured Streaming
+- Develop and maintain batch ETL/ELT pipelines with dbt and Airflow
+- Model and load data into our Snowflake warehouse following dimensional best practices
+- Build and enforce data quality checks, validation, and observability across pipelines
+- Deploy and operate pipelines on AWS using containerized workloads (Docker, Kubernetes)
+- Manage infrastructure as code with Terraform and automate releases with CI/CD
+- Partner with analytics and ML teams to deliver well-modeled, trusted datasets
+- Take ownership of data product reliability, SLAs, and incident response
+
+What we're looking for
+- Strong programming in Python and SQL
+- Hands-on experience with Apache Spark / PySpark and distributed data processing
+- Experience building streaming pipelines (Kafka, Kinesis, or similar)
+- Experience with a cloud data warehouse (Snowflake, Redshift, or BigQuery)
+- Workflow orchestration experience (Airflow, Dagster, or similar)
+- Familiarity with dbt for transformation and testing
+- Experience with AWS data services (Glue, Lambda, S3, EMR, Step Functions)
+- Comfort with Docker and Kubernetes for deploying data workloads
+- Infrastructure as code (Terraform) and CI/CD pipelines
+- A strong focus on data quality and reliability
+- Excellent collaboration and communication skills; ability to own projects end to end
+
+Nice to have
+- Experience with Great Expectations or similar data quality frameworks
+- Experience with Fivetran or other managed ingestion tools
+- Lakehouse / Delta Lake experience
