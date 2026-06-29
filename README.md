@@ -202,9 +202,10 @@ resume-autopilot/
 ├── skills/                  # the 5 resume skills (auto-loaded by the plugin)
 │   └── resume-*/SKILL.md
 ├── scripts/
-│   ├── keyword_match.py     # zero-token JD↔resume gap analysis (runs first)
-│   ├── quality_check.py     # metrics / buzzword / soft-skill / length gate
-│   └── compile.sh           # latexmk → named PDF
+│   ├── keyword_match.py        # zero-token JD↔resume gap analysis (runs first)
+│   ├── quality_check.py        # metrics / buzzword / soft-skill / length gate
+│   ├── compile.sh              # latexmk → named PDF
+│   └── CUSTOMIZE_KEYWORDS.md   # how to retune the keyword bank for your role
 ├── master-1page/resume.tex  # one-page master — tailor from here for most applications
 ├── master-full/resume.tex   # full master — no page limit
 ├── knowledge/               # source-of-truth content the agent pulls from
@@ -235,10 +236,16 @@ Replace the fictional **Alex Morgan** persona with your own:
    reads these to make bullets specific and accurate.
 3. **`CLAUDE.md`** — set the *Target role* line to the role you're applying for.
 4. **The 5 skills** — open each `skills/resume-*/SKILL.md` and replace the
-   `Default context — REPLACE with your own` block with your name, seniority, and stack.
-5. **`.claude-plugin/plugin.json` + `marketplace.json`** — update the `author`/`owner` name and
+   `Default context — REPLACE with your own` block with your name, seniority, and stack. (Optional:
+   the expert-persona line — "cloud / data / software engineering positions" — can be reworded to your
+   field.)
+5. **The keyword bank** — the default keyword bank in `scripts/keyword_match.py` is tuned for
+   Data / AI / Cloud roles. Targeting a different field? See
+   [`scripts/CUSTOMIZE_KEYWORDS.md`](scripts/CUSTOMIZE_KEYWORDS.md) — it has a copy-paste AI prompt
+   that regenerates the bank for your role in the exact format the script expects.
+6. **`.claude-plugin/plugin.json` + `marketplace.json`** — update the `author`/`owner` name and
    `homepage` to your GitHub repo.
-6. Delete `jobs/example_company/` (or keep it as a reference) and clear the demo row from
+7. Delete `jobs/example_company/` (or keep it as a reference) and clear the demo row from
    `jobs/tracker.md`.
 
 ---
@@ -246,7 +253,10 @@ Replace the fictional **Alex Morgan** persona with your own:
 ## Prerequisites
 
 - **Claude Code** — the agent runtime ([install guide](https://docs.claude.com/en/docs/claude-code))
-- **A LaTeX toolchain** with `latexmk` (e.g. TeX Live or MacTeX) — for PDF compilation
+- **A LaTeX toolchain** with `latexmk` — for PDF compilation. Quick install:
+  - macOS: `brew install --cask mactex-no-gui` (or the smaller `basictex`)
+  - Debian/Ubuntu: `sudo apt-get install texlive-latex-extra latexmk`
+  - Windows: install [MiKTeX](https://miktex.org) (bundles `latexmk`)
 - **Python 3.8+** — for the keyword and quality scripts (standard library only, no pip installs)
 
 ---
