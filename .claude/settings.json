@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // \"\"' | { read -r f; echo \"$f\" | grep -q '\\.tex$' && latexmk -interaction=nonstopmode -file-line-error -pdf -outdir=\"$(dirname \"$f\")\" \"$f\"; } >/dev/null 2>&1 || true",
+            "timeout": 60,
+            "statusMessage": "Building PDF..."
+          }
+        ]
+      }
+    ]
+  }
+}

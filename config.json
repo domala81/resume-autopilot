@@ -1,0 +1,10 @@
+{
+  "name": "Alex Morgan",
+  "email": "alex.morgan.dev@example.com",
+  "phone": "555) 010-1234",
+  "file_prefix": "AlexMorgan_Resume",
+  "master": "master-1page/resume.tex",
+  "master_full": "master-full/resume.tex",
+  "keywords_file": "keywords/data-eng.json",
+  "knowledge_dir": "knowledge"
+}

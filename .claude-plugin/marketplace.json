@@ -1,14 +1,14 @@
 {
   "name": "resume-autopilot-marketplace",
   "owner": {
-    "name": "Your Name"
+    "name": "Nihar Domala"
   },
   "plugins": [
     {
       "name": "resume-autopilot",
       "source": "./",
       "description": "Five resume skills for ATS-optimized, job-tailored resumes: diagnoser, recruiter, rewriter, hiring-manager, and bullet-refiner.",
-      "version": "0.1.0"
+      "version": "2.0.0"
     }
   ]
 }

@@ -1,0 +1,122 @@
+{
+  "known_keywords": [
+    "python", "sql", "scala", "java", "r", "bash", "go", "rust", "typescript", "javascript",
+    "spark", "pyspark", "hadoop", "hive", "flink", "kafka", "kinesis", "beam", "dbt",
+    "databricks", "delta lake", "delta", "iceberg", "parquet", "avro", "orc",
+    "aws", "s3", "glue", "lambda", "redshift", "emr", "athena", "sagemaker", "step functions",
+    "dynamodb", "sqs", "sns", "rds", "ec2", "ecs", "eks", "cloudwatch", "cloudformation",
+    "cdk", "terraform", "iam",
+    "gcp", "bigquery", "dataflow", "dataproc", "pub/sub", "pubsub", "cloud run", "gke",
+    "vertex ai", "vertex",
+    "azure", "azure data factory", "adf", "synapse", "azure databricks", "cosmos db",
+    "azure functions", "ado",
+    "airflow", "prefect", "dagster", "luigi", "mage", "argo",
+    "postgresql", "postgres", "mysql", "snowflake", "mongodb", "cassandra", "redis",
+    "elasticsearch", "neo4j", "sqlite", "cockroachdb", "duckdb",
+    "machine learning", "deep learning", "nlp", "llm", "rag", "langchain", "openai",
+    "hugging face", "pytorch", "tensorflow", "scikit-learn", "sklearn", "xgboost",
+    "lightgbm", "mlflow", "feature store", "vector database", "embeddings",
+    "transformer", "bert", "gpt", "fine-tuning", "prompt engineering",
+    "etl", "elt", "data pipeline", "data lake", "data lakehouse", "data warehouse",
+    "data mesh", "data catalog", "data quality", "data lineage", "data governance",
+    "streaming", "batch processing", "real-time", "cdc", "change data capture",
+    "schema evolution", "schema registry",
+    "docker", "kubernetes", "k8s", "ci/cd", "github actions", "jenkins", "gitlab ci",
+    "helm", "ansible", "git", "github", "gitlab",
+    "rest", "restful", "graphql", "grpc", "api gateway", "fastapi", "flask", "django",
+    "agile", "scrum", "jira", "confluence", "stakeholder", "cross-functional",
+    "tableau", "power bi", "looker", "quicksight", "grafana", "superset",
+    "pytest", "unit testing", "integration testing", "data testing", "great expectations",
+    "datadog", "new relic", "splunk", "prometheus", "alerting", "observability"
+  ],
+  "aliases": {
+    "pyspark": ["spark"],
+    "postgresql": ["postgres"],
+    "scikit-learn": ["sklearn"],
+    "pub/sub": ["pubsub"],
+    "k8s": ["kubernetes"],
+    "aws glue": ["glue"],
+    "aws lambda": ["lambda"],
+    "step functions": ["step functions", "stepfunctions"],
+    "delta lake": ["delta"]
+  },
+  "skills_clusters": {
+    "Programming & Tools": [
+      "python", "sql", "bash", "go", "scala", "java", "rust", "typescript", "javascript",
+      "git", "github", "gitlab", "docker", "terraform", "ansible", "helm", "cdk",
+      "jenkins", "github actions", "gitlab ci", "ci/cd",
+      "kubernetes", "k8s", "eks", "ecs", "ec2"
+    ],
+    "Databases": [
+      "mysql", "snowflake", "mongodb", "postgresql", "postgres", "neo4j", "bigquery",
+      "redis", "cassandra", "elasticsearch", "sqlite", "cockroachdb", "duckdb",
+      "dynamodb", "rds"
+    ],
+    "Big Data & Visualization": [
+      "spark", "pyspark", "hadoop", "hive", "flink", "kafka", "kinesis", "beam", "dbt",
+      "databricks", "delta lake", "delta", "iceberg", "parquet", "avro", "orc",
+      "airflow", "prefect", "dagster", "luigi", "mage", "argo",
+      "streaming", "batch processing", "real-time", "etl", "elt",
+      "data warehouse", "data lake", "data lakehouse", "data pipeline",
+      "tableau", "power bi", "looker", "quicksight", "grafana", "superset",
+      "datadog", "prometheus", "splunk", "observability"
+    ],
+    "ML & AI": [
+      "machine learning", "deep learning", "nlp", "llm", "rag", "langchain", "openai",
+      "hugging face", "pytorch", "tensorflow", "scikit-learn", "sklearn", "xgboost",
+      "lightgbm", "mlflow", "feature store", "vector database", "embeddings",
+      "transformer", "bert", "gpt", "fine-tuning", "prompt engineering",
+      "sagemaker", "vertex ai", "vertex"
+    ],
+    "AWS Services": [
+      "aws", "s3", "glue", "lambda", "redshift", "emr", "athena", "sagemaker",
+      "step functions", "sqs", "sns", "ec2", "ecs", "eks", "cloudwatch",
+      "cloudformation", "iam", "kinesis"
+    ]
+  },
+  "archetypes": {
+    "streaming-DE": ["kafka", "kinesis", "flink", "real-time", "streaming", "cdc",
+                     "change data capture", "pubsub", "pub/sub", "beam", "schema registry"],
+    "batch-DE":     ["spark", "pyspark", "glue", "airflow", "etl", "elt", "dbt",
+                     "batch processing", "hive", "hadoop", "emr", "dagster", "prefect"],
+    "ml-adjacent":  ["sagemaker", "mlflow", "feature store", "machine learning", "pytorch",
+                     "tensorflow", "llm", "rag", "vertex ai", "xgboost", "scikit-learn",
+                     "embeddings", "fine-tuning"],
+    "cloud-infra-DE": ["eks", "k8s", "kubernetes", "terraform", "cdk", "cloudformation",
+                       "docker", "helm", "ecs", "ansible", "ci/cd", "github actions",
+                       "cloudwatch", "observability"],
+    "analytics-DE": ["dbt", "snowflake", "tableau", "power bi", "looker", "bigquery",
+                     "duckdb", "quicksight", "superset", "grafana", "data warehouse",
+                     "data lakehouse", "redshift"]
+  },
+  "common_words": [
+    "the", "and", "with", "for", "that", "this", "are", "from", "have", "will",
+    "your", "you", "our", "their", "they", "them", "not", "but", "can", "all",
+    "use", "used", "using", "work", "working", "role", "team", "data", "new",
+    "build", "built", "help", "strong", "good", "best", "well", "need", "must",
+    "also", "able", "make", "into", "such", "both", "more", "most", "some",
+    "has", "had", "its", "than", "each", "may", "one", "two", "three", "across",
+    "within", "about", "other", "what", "how", "when", "where", "which",
+    "key", "high", "large", "scale", "based", "level", "end", "systems",
+    "experience", "skills", "knowledge", "understanding", "ability", "including",
+    "requirements", "responsibilities", "preferred", "required", "plus", "etc",
+    "year", "years", "time", "business", "product", "service", "customer",
+    "ensure", "drive", "develop", "design", "implement", "manage", "support",
+    "platform", "solution", "solutions", "environment", "process", "processes",
+    "apache", "cloud", "engineer", "engineering", "software", "infrastructure",
+    "application", "applications", "framework", "frameworks", "tools", "tool",
+    "pipeline", "pipelines", "model", "models", "project", "projects",
+    "ownership", "familiarity", "mindset", "stakeholders",
+    "collaborate", "collaboration", "cross-functionally", "communication",
+    "motivated", "passion", "detail", "oriented", "driven", "focused",
+    "responsible", "accountability", "proficiency", "proficient",
+    "hands-on", "end-to-end", "fast-paced", "self-starter",
+    "looking", "roll", "solid", "building", "author", "research", "scientists",
+    "generative", "agentic", "full-stack", "customer-facing", "end-user",
+    "cutting-edge", "high-impact", "high-quality", "hyper-scale", "real-world",
+    "production-ready", "fully-tested", "ai-created", "field-debugging",
+    "low-cognitive-load", "world-class", "state-of-the-art", "best-in-class",
+    "problem-solving", "well-tested", "large-scale", "day-to-day", "in-house",
+    "must-have", "nice-to-have", "on-site", "on-call", "re-usable", "trade-offs"
+  ]
+}

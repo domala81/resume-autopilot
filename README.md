@@ -12,6 +12,10 @@ This repo ships with a **fictional sample persona** ("Alex Morgan", a Data Engin
 pipeline runs end-to-end out of the box and compiles to a real demo PDF. Swap in your own details
 to make it yours.
 
+> **Why this exists:** sharing is caring. Job hunting is exhausting enough without spending an hour
+> tweaking your resume for every posting. If tech can make that easier, everyone should have it —
+> so here it is. Use it, fork it, pass it on.
+
 ---
 
 ## The problem
@@ -85,15 +89,22 @@ QUICK WINS — top 3 missing keywords by JD emphasis:
         └──────┬───────┘
                ▼
         ┌──────────────┐
-        │quality_check │  hard gate: 5+ metrics, 0 buzzwords, 0 first-person,
-        │     .py      │  2+ soft-skill signals, 500–600 words → must PASS
+        │quality_check │  hard gate: 5+ metrics, 0 buzzwords, 0 first-person, 2+ soft-skill
+        │     .py      │  signals, no duplicate bullets, LaTeX preamble untouched → must PASS
         └──────┬───────┘
                ▼
         ┌──────────────┐
-        │  compile.sh  │  latexmk → named one-page PDF
+        │ truth_check  │  fabrication gate: every number must be traceable to your
+        │     .py      │  masters/knowledge base — a made-up metric blocks the build
         └──────┬───────┘
                ▼
-          tracker.md     append: company, role, date, match %, status
+        ┌──────────────┐
+        │finish_job.sh │  latexmk → named PDF → 1-page gate → re-score the EXTRACTED
+        │              │  PDF text (what an ATS parses) → abort if worse than master
+        └──────┬───────┘
+               ▼
+          tracker.md     append: company, role, date, match % (master -> tailored),
+                         response, interview, status
 ```
 
 Three engineering ideas make this work better than "ask an LLM to rewrite my resume":
@@ -107,8 +118,17 @@ Three engineering ideas make this work better than "ask an LLM to rewrite my res
    the JD for soft-signal extraction on target companies. You choose the spend per application.
 
 3. **Quality gates that block bad output.** `quality_check.py` fails the build if the resume has fewer
-   than 5 metrics, any banned buzzword or first-person pronoun, or too few soft-skill signals. The
-   agent must fix FAILs before it is allowed to compile — so "looks done" can't ship broken.
+   than 5 metrics, any banned buzzword or first-person pronoun, too few soft-skill signals, duplicate
+   bullets, or a modified LaTeX preamble (hash-checked against the master). The agent must fix FAILs
+   before it is allowed to compile — so "looks done" can't ship broken.
+
+4. **It can't lie for you.** `truth_check.py` compares every number in the tailored resume against
+   your masters and `knowledge/` files. A fabricated metric is an interview you'll fail — so it's a
+   hard block, not a warning.
+
+5. **It scores what recruiters' software actually sees.** The final match score runs against text
+   extracted from the compiled PDF (the thing an ATS parses), not your source file — and the build
+   aborts if tailoring somehow made the score worse than the master.
 
 The LaTeX template (Jake's Resume) is treated as **immutable structure**: `CLAUDE.md` forbids the
 agent from touching the documentclass, geometry, spacing, fonts, or commands. It may only change
@@ -142,12 +162,11 @@ See [`SKILLS.md`](SKILLS.md) for the full when-to-use-what guide.
 From inside Claude Code, add this repo as a plugin marketplace and install the toolkit:
 
 ```text
-/plugin marketplace add your-username/resume-autopilot
+/plugin marketplace add domala81/resume-autopilot
 /plugin install resume-autopilot@resume-autopilot-marketplace
 ```
 
-(Replace `your-username/resume-autopilot` with the GitHub repo path once you've pushed it. You can
-also point at a local clone: `/plugin marketplace add ./resume-autopilot`.)
+(You can also point at a local clone: `/plugin marketplace add ./resume-autopilot`.)
 
 The five skills are then available in any Claude Code session.
 
@@ -162,7 +181,7 @@ cp -r skills/* ~/.claude/skills/
 ### Then clone the pipeline
 
 ```bash
-git clone https://github.com/your-username/resume-autopilot.git
+git clone https://github.com/domala81/resume-autopilot.git
 cd resume-autopilot
 ```
 
@@ -179,13 +198,17 @@ Open the folder in Claude Code and paste a job description to start tailoring.
    updates `tracker.md`.
 4. Find your tailored, one-page PDF in `jobs/<company>/`.
 
-Prefer to drive the scripts yourself? They stand alone:
+Prefer to drive the scripts yourself? Two calls run the whole pipeline:
 
 ```bash
-python scripts/keyword_match.py jobs/<company>/jd.txt master-1page/resume.tex
-python scripts/quality_check.py jobs/<company>/resume.tex
-bash   scripts/compile.sh        jobs/<company>/resume.tex YourName_Resume_<Company>_<Role>
+# save the JD to jobs/<company>/jd.txt first, then:
+bash scripts/new_job.sh    <company>                                          # setup + gap analysis
+# ...edit jobs/<company>/resume.tex (or let Claude do it)...
+bash scripts/finish_job.sh <company> YourName_Resume_<Company>_<Role> "<Role>" # all gates + PDF + tracker
 ```
+
+Each underlying script also stands alone (`keyword_match.py`, `quality_check.py`, `truth_check.py`,
+`compile.sh`) — see the table in each script's header.
 
 ---
 
@@ -201,21 +224,29 @@ resume-autopilot/
 ├── SKILLS.md                # when-to-use-which-skill reference
 ├── skills/                  # the 5 resume skills (auto-loaded by the plugin)
 │   └── resume-*/SKILL.md
+├── config.json              # your identity + paths — edit this first
+├── keywords/                # keyword data per role type (JSON, swappable) + guide
 ├── scripts/
-│   ├── keyword_match.py        # zero-token JD↔resume gap analysis (runs first)
-│   ├── quality_check.py        # metrics / buzzword / soft-skill / length gate
-│   ├── compile.sh              # latexmk → named PDF
-│   └── CUSTOMIZE_KEYWORDS.md   # how to retune the keyword bank for your role
-├── master-1page/resume.tex  # one-page master — tailor from here for most applications
+│   ├── new_job.sh              # one call: job folder + master copy + gap analysis
+│   ├── finish_job.sh           # one call: every gate → named PDF → tracker row
+│   ├── keyword_match.py        # zero-token JD↔resume gap analysis
+│   ├── quality_check.py        # metrics / buzzword / soft-skill / preamble / duplicate gate
+│   ├── truth_check.py          # fabrication gate — blocks untraceable metrics
+│   └── compile.sh              # latexmk → named PDF
+├── master-1page/            # one-page master + first-time setup guide (README)
 ├── master-full/resume.tex   # full master — no page limit
-├── knowledge/               # source-of-truth content the agent pulls from
+├── knowledge/               # source-of-truth content the agent pulls from (+ setup README)
 │   ├── skills.md  experience.md  projects.md  achievement_bank.md  certifications.md
-├── jobs/
-│   ├── tracker.md           # application log
-│   ├── template_company/    # blank starting point — copy this per application
+├── jobs/                    # one folder per application (+ how-it-flows README)
+│   ├── tracker.md           # application log: match delta, response, interview
+│   ├── template_company/    # blank starting point
 │   └── example_company/     # ← fully-worked demo (JD → analysis → tailored resume → PDF)
 └── assets/jakes_resume.tex  # the upstream Jake's Resume template, for reference
 ```
+
+New here? Follow the setup guides in order: [`master-1page/README.md`](master-1page/README.md) →
+[`knowledge/README.md`](knowledge/README.md) → [`jobs/README.md`](jobs/README.md). Different career?
+[`keywords/README.md`](keywords/README.md).
 
 **Why this shape:** the `knowledge/` base is the single source of truth so the agent never
 fabricates — it reframes real content. The `master-*` files are the canonical resumes; each job gets
@@ -229,22 +260,20 @@ without the agent.
 
 Replace the fictional **Alex Morgan** persona with your own:
 
-1. **`master-1page/resume.tex`** and **`master-full/resume.tex`** — edit only the content between
-   `\begin{document}` and `\end{document}` (heading, experience, skills, projects, education). Leave
-   the preamble alone.
-2. **`knowledge/`** — put your real roles, projects, achievements, and tech stack here. The agent
-   reads these to make bullets specific and accurate.
-3. **`CLAUDE.md`** — set the *Target role* line to the role you're applying for.
-4. **The 5 skills** — open each `skills/resume-*/SKILL.md` and replace the
-   `Default context — REPLACE with your own` block with your name, seniority, and stack. (Optional:
-   the expert-persona line — "cloud / data / software engineering positions" — can be reworded to your
-   field.)
-5. **The keyword bank** — the default keyword bank in `scripts/keyword_match.py` is tuned for
-   Data / AI / Cloud roles. Targeting a different field? See
-   [`scripts/CUSTOMIZE_KEYWORDS.md`](scripts/CUSTOMIZE_KEYWORDS.md) — it has a copy-paste AI prompt
-   that regenerates the bank for your role in the exact format the script expects.
-6. **`.claude-plugin/plugin.json` + `marketplace.json`** — update the `author`/`owner` name and
-   `homepage` to your GitHub repo.
+1. **`config.json`** — your name, email, phone, and output filename prefix. The truth check,
+   PDF contact check, and finish script all read from here.
+2. **`master-1page/resume.tex`** and **`master-full/resume.tex`** — edit only the content between
+   `\begin{document}` and `\end{document}`. Leave the preamble alone — it's hash-checked, and a
+   drifted preamble fails the build. Full guide: [`master-1page/README.md`](master-1page/README.md).
+3. **`knowledge/`** — put your real roles, projects, achievements, and metrics here. The truth check
+   only allows numbers it can trace to these files, so **if it's not written here, it can't go on
+   your resume.** Guide: [`knowledge/README.md`](knowledge/README.md).
+4. **`CLAUDE.md`** — set the *Target role* line to the role you're applying for.
+5. **The 5 skills** — open each `skills/resume-*/SKILL.md` and replace the
+   `Default context — REPLACE with your own` block with your name, seniority, and stack.
+6. **The keyword bank** — `keywords/data-eng.json` is tuned for Data / AI / Cloud roles. Different
+   field? Copy it, edit five JSON keys, point `config.json` at your file — no code changes.
+   Guide: [`keywords/README.md`](keywords/README.md).
 7. Delete `jobs/example_company/` (or keep it as a reference) and clear the demo row from
    `jobs/tracker.md`.
 
@@ -258,6 +287,9 @@ Replace the fictional **Alex Morgan** persona with your own:
   - Debian/Ubuntu: `sudo apt-get install texlive-latex-extra latexmk`
   - Windows: install [MiKTeX](https://miktex.org) (bundles `latexmk`)
 - **Python 3.8+** — for the keyword and quality scripts (standard library only, no pip installs)
+- **poppler** *(optional but recommended)* — enables the PDF-text ATS checks
+  (`brew install poppler` / `apt-get install poppler-utils`). Without it the pipeline still runs,
+  scoring the `.tex` source instead of the extracted PDF text.
 
 ---
 
