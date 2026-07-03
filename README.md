@@ -191,6 +191,11 @@ Open the folder in Claude Code and paste a job description to start tailoring.
 
 ## Quickstart — tailor a resume for a job
 
+> **First, strengthen your master.** Your master resume is the ceiling: tailoring can only
+> polish it, never fix it. Run the master loop in [SKILLS.md](SKILLS.md)
+> (diagnoser → recruiter → rewriter → bullet-refiner) before tailoring anything, and again
+> every 2–3 months.
+
 1. Open this repo in Claude Code.
 2. Paste a job description and say e.g. *"full: tailor my resume for this Cloudpeak Data Engineer role."*
 3. Claude runs the pipeline: saves the JD → runs `keyword_match.py` → writes `analysis.md` →
