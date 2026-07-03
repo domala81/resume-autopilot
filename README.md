@@ -212,8 +212,18 @@ bash scripts/new_job.sh    <company>                                          # 
 bash scripts/finish_job.sh <company> YourName_Resume_<Company>_<Role> "<Role>" # all gates + PDF + tracker
 ```
 
+Between editing and finishing, one zero-token command puts your strongest evidence where the
+6-second recruiter scan lands — the top of each role:
+
+```bash
+python3 scripts/reorder_bullets.py jobs/<company>/resume.tex jobs/<company>/jd.txt --apply
+```
+
+It only reorders — bullet text never changes (a built-in check guarantees it), and a `% pin`
+comment after any bullet holds it in place.
+
 Each underlying script also stands alone (`keyword_match.py`, `quality_check.py`, `truth_check.py`,
-`compile.sh`) — see the table in each script's header.
+`reorder_bullets.py`, `compile.sh`) — see each script's header for usage.
 
 ---
 
@@ -237,6 +247,7 @@ resume-autopilot/
 │   ├── keyword_match.py        # zero-token JD↔resume gap analysis
 │   ├── quality_check.py        # metrics / buzzword / soft-skill / preamble / duplicate gate
 │   ├── truth_check.py          # fabrication gate — blocks untraceable metrics
+│   ├── reorder_bullets.py      # strongest JD-matching bullets to the top (pure reorder)
 │   └── compile.sh              # latexmk → named PDF
 ├── master-1page/            # one-page master + first-time setup guide (README)
 ├── master-full/resume.tex   # full master — no page limit

@@ -28,6 +28,7 @@ Target role: **[your target role — e.g. Data Engineer / AI Engineer]**
    - Never invent experience — only reframe, reorder, or swap in existing bullets from masters.
    - Check `knowledge/` for role context (metrics, tech, outcomes) before writing.
    - Invoke `resume-bullet-refiner` skill when rewriting any bullet.
+   - Then surface the strongest evidence: `python3 scripts/reorder_bullets.py jobs/<folder>/resume.tex jobs/<folder>/jd.txt` (dry-run, 0 tokens). Read the proposed order; if it doesn't break a role's narrative, re-run with `--apply`. Bullets marked `% pin` never move.
 5. Finalize:
    `bash scripts/finish_job.sh <folder> <file_prefix>_<Company>_<RoleTitle> "<Role Title>"` (file_prefix from `config.json`, PascalCase, no spaces) — gates in order: quality check, truth check (aborts on metrics not traceable to masters/knowledge — never work around this by editing knowledge files; fix the resume), compile, 1-page check, contact-info-in-PDF check, match score on extracted PDF text with regression abort if below master, tracker row (folder name kept for disambiguation when ≠ company).
    Truth-check WARN terms: verify each is real experience before finalizing.

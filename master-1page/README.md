@@ -45,6 +45,18 @@ ATS-friendly LaTeX layout recruiters already know.
    All checks should pass and the PDF should be exactly one page. Fix the master
    once and every tailored resume inherits the fix.
 
+## Pinning bullets
+
+During tailoring, `scripts/reorder_bullets.py` moves each role's strongest JD-matching bullets
+to the top. If a bullet must stay put — usually a scope-setting opener ("Own the team's core
+pipeline...") — add a `% pin` comment right after its closing brace in the master:
+
+```latex
+\resumeItem{Own the 50M-record ingestion pipeline serving 12 teams} % pin
+```
+
+Set it once here; every tailored copy inherits it.
+
 ## Keeping masters healthy
 
 - New skill, project, or metric → add it to `knowledge/` first, then work it into
