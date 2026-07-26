@@ -33,6 +33,9 @@ Target role: **[your target role — e.g. Data Engineer / AI Engineer]**
    `bash scripts/finish_job.sh <folder> <file_prefix>_<Company>_<RoleTitle> "<Role Title>"` (file_prefix from `config.json`, PascalCase, no spaces) — gates in order: quality check, truth check (aborts on metrics not traceable to masters/knowledge — never work around this by editing knowledge files; fix the resume), compile, 1-page check, contact-info-in-PDF check, match score on extracted PDF text with regression abort if below master, tracker row (folder name kept for disambiguation when ≠ company).
    Truth-check WARN terms: verify each is real experience before finalizing.
 6. Full mode only (target companies): after finish_job passes, optionally run the `resume-diagnoser` skill on the tailored resume for a final recruiter-eye pass.
+7. Cover letter (full mode, opt-in): after finish_job passes, ask exactly:
+   > **Want a cover letter for this role? (y/n)**
+   Generate only on yes — never auto-generate per application. On yes, invoke the `resume-cover-letter` skill: it fills `assets/cover_letter_template.tex` from `analysis.md` priorities + the resume's strongest bullets + `knowledge/`, then runs `bash scripts/cover_letter.sh <folder> <file_prefix>_CoverLetter_<Company>` (tone/length gate → truth gate → compiled PDF).
 
 ## Quality Checklist (enforced by scripts/quality_check.py)
 

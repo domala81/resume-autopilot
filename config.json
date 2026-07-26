@@ -2,6 +2,7 @@
   "name": "Alex Morgan",
   "email": "alex.morgan.dev@example.com",
   "phone": "555) 010-1234",
+  "linkedin": "linkedin.com/in/alex-morgan-data",
   "file_prefix": "AlexMorgan_Resume",
   "master": "master-1page/resume.tex",
   "master_full": "master-full/resume.tex",

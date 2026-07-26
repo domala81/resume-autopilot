@@ -17,6 +17,7 @@ PER-APPLICATION LOOP (CLAUDE.md workflow)
   3. Tailor resume.tex    → add missing keywords, adjust framing
   4. /resume-bullet-refiner → optional: sharpen any new bullets added
   5. compile.sh           → PDF
+  6. /resume-cover-letter → opt-in (full mode): ask first, then tailored cover letter → PDF
 
 INTERVIEW PREP (standalone, night before)
   /resume-hiring-manager  → 30-min mock interview, hireability score, study plan
@@ -187,6 +188,34 @@ refine my resume bullets
 
 ---
 
+## 6. Cover Letter
+
+**Trigger phrases:** `write a cover letter` · `cover letter for this role` (opt-in per role)
+
+**What it does:** Generates a tailored, one-page cover letter (four beats: hook → one story → differentiator → company close) from the finalized resume's analysis + strongest bullets. Hard tone gates (banned buzzwords + AI-tells) and word count (300–330, cap 370) via `cover_letter_check.py`; truth-gated like the resume. Compiles to a PDF whose header matches your resume.
+
+**Use when:**
+- A target company you care about — after `finish_job.sh` passes on the tailored resume
+- Only when you actually want one (roughly doubles a full-mode job's token cost)
+
+**Do NOT use when:**
+- High-volume / quick-mode applying (skip it — the CLAUDE.md workflow asks first, defaults to no)
+- Before the resume is finalized (it reuses the resume's analysis; don't re-derive)
+
+**Token cost:** Medium — ~600–700 tokens in the same session as tailoring.
+
+**How to run:**
+```
+[after finishing the resume] yes, write a cover letter
+```
+Or drive it directly: fill `assets/cover_letter_template.tex` → `bash scripts/cover_letter.sh <folder> <file_prefix>_CoverLetter_<Company>`.
+
+**Caveats:**
+- Every number must trace to `knowledge/` — same truth gate as the resume, no fabrication
+- One real, researched company fact required; it won't ship a generic "industry leader" line
+
+---
+
 ## Per-Application Workflow (CLAUDE.md)
 
 For each job application, paste the JD directly. Claude runs:
@@ -217,3 +246,6 @@ Skills are for **master resume improvement** and **interview prep** — not per-
 | `knowledge/projects.md` | Project details |
 | `knowledge/achievement_bank.md` | Metrics and wins |
 | `assets/jakes_resume.tex` | Jake's template reference — do not modify |
+| `scripts/cover_letter_check.py` | Cover-letter tone/length gate — buzzwords, AI-tells, word count |
+| `scripts/cover_letter.sh` | One-call cover letter: tone gate → truth gate → compiled PDF |
+| `assets/cover_letter_template.tex` | Cover letter LaTeX template — header matches your resume |

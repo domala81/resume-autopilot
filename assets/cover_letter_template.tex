@@ -1,0 +1,110 @@
+%-------------------------
+% Cover-letter template — 3-column header + blue rules + footer layout adapted from
+% Jayesh Sanwal's entry-level cover letter, rewired to: the resume default font
+% (Computer Modern, pdflatex — NO fontspec/xelatex), the config identity, and the
+% four-beat pattern. Compiles with scripts/compile.sh (latexmk -pdf).
+%
+% The resume-cover-letter skill copies this to jobs/<folder>/cover_letter.tex and fills
+% the {{ROLE TITLE}} header slot + the four {{BEAT ...}} body markers. Keep "Dear ..." and
+% the "Sincerely" sign-off intact — cover_letter_check.py measures the span between them.
+% Replace the header/sign-off details with your own (see config.json).
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+\usepackage{csquotes}
+\usepackage{tabularx}
+\hypersetup{colorlinks=true,urlcolor=black}
+\usepackage[11pt]{moresize}
+\usepackage{setspace}
+\usepackage[inline]{enumitem}
+\usepackage{ragged2e}
+\usepackage{anyfontsize}
+
+%%%% Margins
+\usepackage[margin=1cm]{geometry}
+
+%%%% Page style
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\urlstyle{same}
+
+%%%% Indentation
+\raggedbottom
+\setlength{\tabcolsep}{0in}
+
+%%%% Colors + footer
+\definecolor{UI_blue}{RGB}{32, 64, 151}
+\definecolor{HF_color}{RGB}{179, 179, 179}
+\rfoot{{\color{HF_color} \thepage \ of \ 1, Updated \today}}
+
+\begin{document}
+%%%%%%% ---------------------------------------------------------------------
+%%%%%%%  HEADER
+%%%%%%% ---------------------------------------------------------------------
+\begin{center}
+    \begin{minipage}[c]{0.32\textwidth}
+            \small (555) 010-1234 \\
+            \small \href{mailto:alex.morgan.dev@example.com}{alex.morgan.dev@example.com}
+    \end{minipage}%
+    \begin{minipage}[c]{0.36\textwidth}
+            \centering
+            {\huge \scshape Alex Morgan} \\
+            \vspace{2pt}
+            {\color{UI_blue} \large {{ROLE TITLE}}}
+    \end{minipage}%
+    \begin{minipage}[c]{0.32\textwidth}
+            \raggedleft \small
+            \href{https://linkedin.com/in/alex-morgan-data}{linkedin.com/in/alex-morgan-data} \\
+            \href{https://github.com/alexmorgan-dev}{github.com/alexmorgan-dev}
+    \end{minipage}
+
+\vspace{6pt}
+{\color{UI_blue} \hrulefill}
+\end{center}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{12pt}
+\vspace{0.2cm}
+\begin{center}
+    {\color{UI_blue} \Large COVER LETTER}
+\end{center}
+
+%%%%%%% ---------------------------------------------------------------------
+%%%%%%%  LETTER BODY  (LaTeX-escape any & % $ # _ in generated prose)
+%%%%%%% ---------------------------------------------------------------------
+Date: \today \par \vspace{-0.1cm}
+Dear Hiring Manager,
+
+{{BEAT 1 -- HOOK: name the exact ROLE TITLE + TEAM/ORG CONTEXT; the one specific thing about
+this JD/company that made it worth writing (not "why I'm applying"); one short line that this is
+already how I work.}}
+
+{{BEAT 2 -- CENTERPIECE STORY: situation (what was broken/needed) then what I built then what
+changed, with the single most JD-relevant metric. One story, deep.}}
+
+{{BEAT 3 -- DIFFERENTIATOR: the ONE asset that proves the JD's most-emphasized soft requirement,
+framed as the judgment behind it; then one honest sentence on the JD's named stack keywords,
+flagging any gap as "comfortable picking up X quickly".}}
+
+{{BEAT 4 -- COMPANY CLOSE: one real, researched fact about COMPANY tied to why it's the
+environment I want to build in.}} I'd welcome the chance to talk it through. Thank you for your
+consideration.
+
+\vspace{0.5cm}
+\raggedright
+Sincerely, \\ Alex Morgan \\ (555) 010-1234 \\ \href{mailto:alex.morgan.dev@example.com}{alex.morgan.dev@example.com}
+
+\end{document}

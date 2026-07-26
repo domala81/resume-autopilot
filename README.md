@@ -12,6 +12,10 @@ This repo ships with a **fictional sample persona** ("Alex Morgan", a Data Engin
 pipeline runs end-to-end out of the box and compiles to a real demo PDF. Swap in your own details
 to make it yours.
 
+> **New in v3.0.0:** cover letter generation. A sixth skill (`resume-cover-letter`) writes a
+> tone-gated, truth-checked one-page cover letter as a designed PDF — opt-in per role, reusing
+> the resume's analysis. See [CHANGELOG.md](CHANGELOG.md).
+
 > **Why this exists:** sharing is caring. Job hunting is exhausting enough without spending an hour
 > tweaking your resume for every posting. If tech can make that easier, everyone should have it —
 > so here it is. Use it, fork it, pass it on.
@@ -137,11 +141,11 @@ one page and ATS-parseable.
 
 ---
 
-## The 5 skills
+## The 6 skills
 
-This repo doubles as an installable **Claude Code plugin** bundling five resume skills. Four are
+This repo doubles as an installable **Claude Code plugin** bundling six resume skills. Four are
 research/coaching tools you run periodically on your master resume; one is a surgical bullet editor
-used inside the per-application workflow.
+and one is a cover-letter generator, both used inside the per-application workflow.
 
 | Skill | What it does | When to use |
 |-------|--------------|-------------|
@@ -150,6 +154,7 @@ used inside the per-application workflow.
 | `resume-rewriter` | Rewrites every experience bullet with Google's XYZ formula, layering in keywords | Full master-resume overhaul |
 | `resume-hiring-manager` | 30-min mock interview with scoring + hireability score + study plan | Night before a real interview |
 | `resume-bullet-refiner` | Surgical single-bullet rewrites; asks for metrics instead of fabricating | Anytime a bullet feels weak |
+| `resume-cover-letter` | Tailored one-page cover letter (4 beats, tone-gated, truth-checked) → PDF | A target company, after the resume passes — opt-in |
 
 See [`SKILLS.md`](SKILLS.md) for the full when-to-use-what guide.
 
@@ -168,7 +173,7 @@ From inside Claude Code, add this repo as a plugin marketplace and install the t
 
 (You can also point at a local clone: `/plugin marketplace add ./resume-autopilot`.)
 
-The five skills are then available in any Claude Code session.
+The six skills are then available in any Claude Code session.
 
 ### Option B — manual copy
 
@@ -237,7 +242,7 @@ resume-autopilot/
 ├── CLAUDE.md                # the agent's operating instructions — the per-application workflow
 ├── README.md                # you are here
 ├── SKILLS.md                # when-to-use-which-skill reference
-├── skills/                  # the 5 resume skills (auto-loaded by the plugin)
+├── skills/                  # the 6 resume skills (auto-loaded by the plugin)
 │   └── resume-*/SKILL.md
 ├── config.json              # your identity + paths — edit this first
 ├── keywords/                # keyword data per role type (JSON, swappable) + guide
@@ -248,7 +253,9 @@ resume-autopilot/
 │   ├── quality_check.py        # metrics / buzzword / soft-skill / preamble / duplicate gate
 │   ├── truth_check.py          # fabrication gate — blocks untraceable metrics
 │   ├── reorder_bullets.py      # strongest JD-matching bullets to the top (pure reorder)
-│   └── compile.sh              # latexmk → named PDF
+│   ├── compile.sh              # latexmk → named PDF
+│   ├── cover_letter_check.py   # cover-letter tone gate: buzzwords + AI-tells + word count
+│   └── cover_letter.sh         # opt-in cover letter: tone + truth gate → compiled PDF
 ├── master-1page/            # one-page master + first-time setup guide (README)
 ├── master-full/resume.tex   # full master — no page limit
 ├── knowledge/               # source-of-truth content the agent pulls from (+ setup README)
@@ -257,7 +264,8 @@ resume-autopilot/
 │   ├── tracker.md           # application log: match delta, response, interview
 │   ├── template_company/    # blank starting point
 │   └── example_company/     # ← fully-worked demo (JD → analysis → tailored resume → PDF)
-└── assets/jakes_resume.tex  # the upstream Jake's Resume template, for reference
+├── assets/jakes_resume.tex  # the upstream Jake's Resume template, for reference
+└── assets/cover_letter_template.tex  # cover-letter LaTeX template (header matches the resume)
 ```
 
 New here? Follow the setup guides in order: [`master-1page/README.md`](master-1page/README.md) →
@@ -285,8 +293,10 @@ Replace the fictional **Alex Morgan** persona with your own:
    only allows numbers it can trace to these files, so **if it's not written here, it can't go on
    your resume.** Guide: [`knowledge/README.md`](knowledge/README.md).
 4. **`CLAUDE.md`** — set the *Target role* line to the role you're applying for.
-5. **The 5 skills** — open each `skills/resume-*/SKILL.md` and replace the
-   `Default context — REPLACE with your own` block with your name, seniority, and stack.
+5. **The 6 skills** — open each `skills/resume-*/SKILL.md` and replace the
+   `Default context — REPLACE with your own` block with your name, seniority, and stack. For
+   `resume-cover-letter`, map its centerpiece/differentiator *categories* to your real
+   `knowledge/` stories.
 6. **The keyword bank** — `keywords/data-eng.json` is tuned for Data / AI / Cloud roles. Different
    field? Copy it, edit five JSON keys, point `config.json` at your file — no code changes.
    Guide: [`keywords/README.md`](keywords/README.md).

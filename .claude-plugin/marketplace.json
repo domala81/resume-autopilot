@@ -7,8 +7,8 @@
     {
       "name": "resume-autopilot",
       "source": "./",
-      "description": "Five resume skills for ATS-optimized, job-tailored resumes: diagnoser, recruiter, rewriter, hiring-manager, and bullet-refiner.",
-      "version": "2.0.0"
+      "description": "Six resume skills for ATS-optimized, job-tailored resumes: diagnoser, recruiter, rewriter, hiring-manager, bullet-refiner, and cover-letter.",
+      "version": "3.0.0"
     }
   ]
 }
