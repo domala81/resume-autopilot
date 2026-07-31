@@ -39,7 +39,13 @@ def load_trusted_text():
 
 
 def body_of(tex):
-    return re.split(r"(?m)^\\begin\{document\}", tex, maxsplit=1)[-1]
+    body = re.split(r"(?m)^\\begin\{document\}", tex, maxsplit=1)[-1]
+    # Drop LaTeX layout numbers so header/geometry (e.g. 0.32\textwidth, 12pt in
+    # the cover-letter template) is not misread as a fabricated metric. Prose
+    # metrics (80\%, 4.2B+, 14) carry no LaTeX unit and are left untouched.
+    body = re.sub(r"\d*\.?\d+\\(?:text|line|column|page)width", " ", body)
+    body = re.sub(r"\d*\.?\d+\s*(?:pt|cm|mm|em|ex|bp)\b", " ", body)
+    return body
 
 
 def extract_metrics(text):
